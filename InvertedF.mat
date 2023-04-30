@@ -1,0 +1,20 @@
+% Create an Inverted F Coplanar antenna
+%Antenna Properties
+antennaObject = design(invertedFcoplanar, 2400*1e6);
+figure;
+show(antennaObject)
+
+%Antenna Analysis
+plotFrequency = 2400*1e6;
+freqRange = (2160:24:2640)*1e6;
+refImpedance = 50;
+figure;
+impedance(antennaObject,freqRange)
+figure;
+s = sparameters(antennaObject, freqRange, refImpedance);
+rfplot(s);
+figure;
+pattern(antennaObject,plotFrequency)
+
+antennaObject.RadiatorArmWidth = 0.0013879;
+antennaObject.FeederArmWidth = 0.0013879;
